@@ -3,7 +3,7 @@ require 'openssl'
 require 'securerandom'
 require 'time'
 require 'json'
-require 'clipboard'
+#require 'clipboard'
 class KeySizeTooSmall < StandardError ; end
 
 def main
@@ -28,23 +28,23 @@ def main
   puts "azure portal keyCredentials key"
   azure_portal_key_credentials_json = JSON.generate(azure_app_keyCredentials_key(ms_cert[:thumbprint], key_id, ms_cert[:base64_value]))
   #heroku_set_variable("AZURE_PORTAL_KEY_CREDENTIALS", azure_portal_key_credentials_json)
-  to_clipboard("azure portal keyCredentials key")
-  to_clipboard(azure_portal_key_credentials_json)
+  #to_clipboard("azure portal keyCredentials key")
+  #to_clipboard(azure_portal_key_credentials_json)
 
   result[:azure_portal_key_credentials_json] = azure_portal_key_credentials_json
 
   puts ""
   puts "X5T_CERT_THUMBPRINT"
-  to_clipboard("X5T_CERT_THUMBPRINT")
-  to_clipboard(ms_cert[:thumbprint])
+  #to_clipboard("X5T_CERT_THUMBPRINT")
+  #to_clipboard(ms_cert[:thumbprint])
   result["X5T_CERT_THUMBPRINT"] = ms_cert[:thumbprint]
   
   #Rsa key pair password
 
   puts ""
   puts "RSA_KEY_PAIR_PASSWORD"
-  to_clipboard("RSA_KEY_PAIR_PASSWORD")
-  to_clipboard(rsa_key_pair_password)
+  #to_clipboard("RSA_KEY_PAIR_PASSWORD")
+  #to_clipboard(rsa_key_pair_password)
   result["RSA_KEY_PAIR_PASSWORD"] = rsa_key_pair_password
 
 
@@ -52,8 +52,8 @@ def main
   base64_secure_pem = Base64.strict_encode64(encrypt_and_export_key_pair(key_pair, rsa_key_pair_password))
   puts ""
   puts "BASE64_SECURE_PEM"
-  to_clipboard("BASE64_SECURE_PEM")
-  to_clipboard(base64_secure_pem)
+  #to_clipboard("BASE64_SECURE_PEM")
+  #to_clipboard(base64_secure_pem)
   result["BASE64_SECURE_PEM"] = base64_secure_pem
   #puts base64_secure_pem
 
